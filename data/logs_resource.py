@@ -3,7 +3,7 @@ from flask import jsonify
 from . import db_session
 from .logs import Log
 from .users import User
-from .cinemas_parser import parser
+from .logs_parser import parser
 
 
 def abort_if_job_not_found(log_id):
