@@ -52,7 +52,7 @@ class UsersListResource(Resource):
         if db_sess.query(User).filter(User.number_phone == args['number_phone']).first():
             return jsonify({'error': 'User number phone is already exists'})
         user = User(fio=args['fio'], password=args['password'], is_admin=args['is_admin'],
-                    number_phone=['number_phone'])
+                    number_phone=args['number_phone'])
         db_sess.add(user)
         db_sess.commit()
         return jsonify({'success': 'OK'})
