@@ -1,9 +1,10 @@
 import sqlalchemy
 from .db_session import SqlAlchemyBase
 from sqlalchemy import orm
+from sqlalchemy_serializer import SerializerMixin
 
 
-class Session(SqlAlchemyBase):
+class Session(SqlAlchemyBase, SerializerMixin):
     __tablename__ = 'session'
     id = sqlalchemy.Column(sqlalchemy.Integer, primary_key=True,
                            autoincrement=True)

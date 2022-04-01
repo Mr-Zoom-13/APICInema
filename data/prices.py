@@ -2,9 +2,10 @@ import sqlalchemy
 from .db_session import SqlAlchemyBase
 from sqlalchemy import orm
 from datetime import date
+from sqlalchemy_serializer import SerializerMixin
 
 
-class Price(SqlAlchemyBase):
+class Price(SqlAlchemyBase, SerializerMixin):
     __tablename__ = 'price'
     id = sqlalchemy.Column(sqlalchemy.Integer, primary_key=True,
                            autoincrement=True)
