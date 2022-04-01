@@ -17,5 +17,10 @@ def main():
     app.run(host='0.0.0.0', port=port)
 
 
+@app.route('/')
+def index():
+    return 'HI'
+
+
 if __name__ == '__main__':
     main()
