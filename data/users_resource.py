@@ -49,7 +49,7 @@ class UsersListResource(Resource):
     def post(self):
         db_sess = db_session.create_session()
         args = parser.parse_args()
-        if not db_sess.query(User).filter(User.number_phone == args['number_phone']).first():
+        if db_sess.query(User).filter(User.number_phone == args['number_phone']).first():
             return jsonify({'error': 'User number phone is already exists'})
         user = User(fio=args['fio'], password=args['password'], is_admin=args['is_admin'],
                     number_phone=['number_phone'])
