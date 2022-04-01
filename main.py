@@ -1,7 +1,8 @@
 from flask import Flask
 from flask_restful import Api
 from data import db_session
-from data import users_resource, cinemas_resource, halls_resource, logs_resource
+from data import users_resource, cinemas_resource, halls_resource, logs_resource, \
+    playbills_resource, prices_resource, sessions_resource
 import os
 
 app = Flask(__name__)
@@ -19,6 +20,13 @@ def main():
     api.add_resource(cinemas_resource.CinemasResource, '/api/v2/cinemas/<int:cinema_id>')
     api.add_resource(logs_resource.LogsListResource, '/api/v2/logs')
     api.add_resource(logs_resource.LogsResource, '/api/v2/logs/<int:log_id>')
+    api.add_resource(playbills_resource.PlaybillsListResource, '/api/v2/playbills')
+    api.add_resource(playbills_resource.PlaybillsResource,
+                     '/api/v2/playbills/<int:playbill_id>')
+    api.add_resource(prices_resource.PricesListResource, '/api/v2/prices')
+    api.add_resource(prices_resource.PricesResource, '/api/v2/prices/<int:price_id>')
+    api.add_resource(sessions_resource.SessionsListResource, '/api/v2/sessions')
+    api.add_resource(sessions_resource.SessionsResource, '/api/v2/sessions/<int:session_id>')
     port = int(os.environ.get("PORT", 5000))
     app.run(host='0.0.0.0', port=port)
 
