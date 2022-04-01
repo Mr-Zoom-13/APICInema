@@ -1,0 +1,14 @@
+import sqlalchemy
+from .db_session import SqlAlchemyBase
+from sqlalchemy import orm
+
+
+class Hall(SqlAlchemyBase):
+    __tablename__ = 'hall'
+    id = sqlalchemy.Column(sqlalchemy.Integer, primary_key=True,
+                           autoincrement=True)
+    width = sqlalchemy.Column(sqlalchemy.Integer)
+    height = sqlalchemy.Column(sqlalchemy.Integer)
+    cinema_id = sqlalchemy.Column(sqlalchemy.Integer, sqlalchemy.ForeignKey('cinema.id'))
+    number = sqlalchemy.Column(sqlalchemy.Integer, autoincrement=True)
+    cinema = orm.relation('Cinema')
