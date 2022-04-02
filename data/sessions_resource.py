@@ -4,7 +4,7 @@ from . import db_session
 from .sessions import Session
 from .cinemas import Cinema
 from .halls import Hall
-from .sessions_parser import parser
+from .sessions_parser import parser, parser_put
 
 
 def abort_if_job_not_found(session_id):
@@ -31,6 +31,15 @@ class SessionsResource(Resource):
         db_sess = db_session.create_session()
         session = db_sess.query(Session).get(session_id)
         db_sess.delete(session)
+        db_sess.commit()
+        return jsonify({'success': 'OK'})
+
+    def put(self, session_id):
+        abort_if_job_not_found(session_id)
+        args = parser_put.parse_args()
+        db_sess = db_session.create_session()
+        session = db_sess.query(Session).get(session_id)
+        session.seats = args['seats']
         db_sess.commit()
         return jsonify({'success': 'OK'})
 
