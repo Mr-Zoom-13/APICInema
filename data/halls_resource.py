@@ -54,7 +54,8 @@ class HallsListResource(Resource):
             return jsonify({'error': 'Cinema ID not found'})
         elif args['height'] <= 0 or args['width'] <= 0:
             return jsonify({'error': 'Height and width less than zero'})
-        hall = Hall(width=args['width'], height=args['height'], cinema_id=args['cinema_id'])
+        hall = Hall(width=args['width'], height=args['height'], cinema_id=args['cinema_id'],
+                    number=args['number'])
         db_sess.add(hall)
         db_sess.commit()
         return jsonify({'success': 'OK'})
