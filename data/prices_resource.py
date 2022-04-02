@@ -32,6 +32,15 @@ class PricesResource(Resource):
         db_sess.commit()
         return jsonify({'success': 'OK'})
 
+    def put(self, price_id):
+        abort_if_job_not_found(price_id)
+        args = parser.parse_args()
+        db_sess = db_session.create_session()
+        price = db_sess.query(Price).get(price_id)
+        price.price = args['price']
+        db_sess.commit()
+        return jsonify({'success': 'OK'})
+
 
 class PricesListResource(Resource):
     def get(self):
