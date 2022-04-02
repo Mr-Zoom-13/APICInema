@@ -8,4 +8,4 @@ parser.add_argument('data', required=True)
 parser.add_argument('seats', required=True)
 
 parser_put = reqparse.RequestParser()
-parser.add_argument('seats', required=True)
+parser_put.add_argument('seats', required=True)
