@@ -7,5 +7,5 @@ class Playbill(SqlAlchemyBase, SerializerMixin):
     __tablename__ = 'playbill'
     id = sqlalchemy.Column(sqlalchemy.Integer, primary_key=True,
                            autoincrement=True)
-    image = sqlalchemy.Column(sqlalchemy.String)
+    image = sqlalchemy.Column(sqlalchemy.BLOB)
     key_word = sqlalchemy.Column(sqlalchemy.String, unique=True)
