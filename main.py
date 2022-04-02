@@ -1,17 +1,35 @@
 from flask import Flask
+from flask_admin.contrib.sqla import ModelView
 from flask_restful import Api
 from data import db_session
 from data import users_resource, cinemas_resource, halls_resource, logs_resource, \
     playbills_resource, prices_resource, sessions_resource
 import os
+from flask_admin import Admin
+from data.cinemas import Cinema
+from data.halls import Hall
+from data.logs import Log
+from data.playbills import Playbill
+from data.prices import Price
+from data.sessions import Session
+from data.users import User
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'yandexlyceum_secret_key'
 api = Api(app)
+admin = Admin(app)
 
 
 def main():
     db_session.global_init('db/cinema.db')
+    db_ses = db_session.create_session()
+    admin.add_view(ModelView(Cinema, db_ses))
+    admin.add_view(ModelView(Hall, db_ses))
+    admin.add_view(ModelView(Log, db_ses))
+    admin.add_view(ModelView(Playbill, db_ses))
+    admin.add_view(ModelView(Price, db_ses))
+    admin.add_view(ModelView(Session, db_ses))
+    admin.add_view(ModelView(User, db_ses))
     api.add_resource(users_resource.UsersListResource, '/api/v2/users')
     api.add_resource(users_resource.UsersResource, '/api/v2/users/<int:user_id>')
     api.add_resource(halls_resource.HallsListResource, '/api/v2/halls')
