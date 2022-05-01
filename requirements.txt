@@ -3,3 +3,4 @@ Flask~=2.0.3
 flask-restful
 sqlalchemy_serializer
 flask-admin
+waitress

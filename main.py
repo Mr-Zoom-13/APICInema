@@ -13,6 +13,7 @@ from data.playbills import Playbill
 from data.prices import Price
 from data.sessions import Session
 from data.users import User
+from waitress import serve
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'yandexlyceum_secret_key'
@@ -46,7 +47,8 @@ def main():
     api.add_resource(sessions_resource.SessionsListResource, '/api/v2/sessions')
     api.add_resource(sessions_resource.SessionsResource, '/api/v2/sessions/<int:session_id>')
     port = int(os.environ.get("PORT", 5000))
-    app.run(host='0.0.0.0', port=port)
+    serve(app, host='0.0.0.0', port=port)
+    api.init_app(app)
 
 
 @app.route('/')
