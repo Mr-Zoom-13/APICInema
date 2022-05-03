@@ -46,8 +46,8 @@ def main():
     api.add_resource(prices_resource.PricesResource, '/api/v2/prices/<int:price_id>')
     api.add_resource(sessions_resource.SessionsListResource, '/api/v2/sessions')
     api.add_resource(sessions_resource.SessionsResource, '/api/v2/sessions/<int:session_id>')
-    # serve(app, host='0.0.0.0', port=5000)
-    app.run(host='0.0.0.0', port=5000)
+    serve(app, host='0.0.0.0', port=5000)
+    # app.run(host='0.0.0.0', port=5000)
 
 
 @app.route('/')
