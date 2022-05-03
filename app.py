@@ -16,7 +16,7 @@ from data.users import User
 from waitress import serve
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'yandexlyceum_secret_key'
+app.config['SECRET_KEY'] = 'my_muuu123grom'
 api = Api(app)
 admin = Admin(app)
 
@@ -46,14 +46,18 @@ def main():
     api.add_resource(prices_resource.PricesResource, '/api/v2/prices/<int:price_id>')
     api.add_resource(sessions_resource.SessionsListResource, '/api/v2/sessions')
     api.add_resource(sessions_resource.SessionsResource, '/api/v2/sessions/<int:session_id>')
-    port = int(os.environ.get("PORT", 5000))
-    serve(app, host='0.0.0.0', port=port)
-    api.init_app(app)
+    # serve(app, host='0.0.0.0', port=5000)
+    app.run(host='0.0.0.0', port=5000)
 
 
 @app.route('/')
 def index():
     return 'HI'
+
+
+@app.route('/api/v2/m')
+def index_2():
+    return 'HI2'
 
 
 if __name__ == '__main__':
